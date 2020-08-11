@@ -1,5 +1,9 @@
 package br.com.amandacorp.projetofinal.dao;
 
-public interface AgendamentoDAO {
+import org.springframework.data.repository.CrudRepository;
+
+import br.com.amandacorp.projetofinal.model.Agendamento;
+
+public interface AgendamentoDAO extends CrudRepository<Agendamento, Integer> {
 
 }

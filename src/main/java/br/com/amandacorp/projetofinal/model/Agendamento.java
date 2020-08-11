@@ -1,19 +1,19 @@
 package br.com.amandacorp.projetofinal.model;
 
 import java.sql.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -37,17 +37,20 @@ public class Agendamento {
 	
 	@Column(name="data_agendamento")
 	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern="dd/MM/yyyy", shape=JsonFormat.Shape.STRING)
 	private Date dataAgendamento;
 	
 	@Column(name="hora_agendamento")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
+	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING)
 	private Date horaAgendamento;
 	
-	@Column(name="observacao", length = 100)
+	@Column(name="observacao", length = 255)
 	private String observacao;
 	
-	@OneToMany(mappedBy="id_agencia", cascade=CascadeType.ALL)
-	@JsonIgnoreProperties("id_agencia")
-	private List<Agencia> listaAgencia;
+	@ManyToOne
+	@JoinColumn(name="id_agencia")  // aqui eu "forço" o nome do campo de junção
+	@JsonIgnoreProperties("listaAgendamentos")
+	private Agencia agencia;
 
 }
