@@ -1,6 +1,7 @@
 package br.com.amandacorp.projetofinal.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,14 +37,12 @@ public class Agendamento {
 	private String celularCliente;
 	
 	@Column(name="data_agendamento")
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern="dd/MM/yyyy", shape=JsonFormat.Shape.STRING)
-	private Date dataAgendamento;
+	@JsonFormat(pattern="dd/MM/yyyy")
+	private LocalDate dataAgendamento;
 	
 	@Column(name="hora_agendamento")
-	@Temporal(TemporalType.TIME)
 	@JsonFormat(pattern="HH:mm", shape=JsonFormat.Shape.STRING)
-	private Date horaAgendamento;
+	private LocalTime horaAgendamento;
 	
 	@Column(name="observacao", length = 255)
 	private String observacao;
@@ -53,4 +52,69 @@ public class Agendamento {
 	@JsonIgnoreProperties("listaAgendamentos")
 	private Agencia agencia;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public String getEmailCliente() {
+		return emailCliente;
+	}
+
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
+	}
+
+	public String getCelularCliente() {
+		return celularCliente;
+	}
+
+	public void setCelularCliente(String celularCliente) {
+		this.celularCliente = celularCliente;
+	}
+
+	public LocalDate getDataAgendamento() {
+		return dataAgendamento;
+	}
+
+	public void setDataAgendamento(LocalDate dataAgendamento) {
+		this.dataAgendamento = dataAgendamento;
+	}
+
+	public LocalTime getHoraAgendamento() {
+		return horaAgendamento;
+	}
+
+	public void setHoraAgendamento(LocalTime horaAgendamento) {
+		this.horaAgendamento = horaAgendamento;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public Agencia getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Agencia agencia) {
+		this.agencia = agencia;
+	}
+
+	
 }

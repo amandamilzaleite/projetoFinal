@@ -34,6 +34,16 @@ public class Usuario {
 	@Column(name="funcional", unique = true)
 	private int funcional;
 	
+	@Column(name="link_foto", length=255)
+	private String linkFoto;
+	
+	public String getLinkFoto() {
+		return linkFoto;
+	}
+	public void setLinkFoto(String linkFoto) {
+		this.linkFoto = linkFoto;
+	}
+	
 	@ManyToOne
 	@JsonIgnoreProperties("listaUsers")
 	private Departamento depto;
